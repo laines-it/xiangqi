@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#202428">
+  <title>Оценка позиции в сянци — прототип</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <div class="eyebrow">Интерактив по книге · этап 1</div>
+      <h1>Оценка позиции в сянци</h1>
+    </div>
+    <button id="resetBtn" class="button ghost" type="button">Сбросить прогресс</button>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar" aria-label="Настройки курса">
+      <section class="panel compact">
+        <h2>Раздел</h2>
+        <div id="chapterFilters" class="filter-list"></div>
+      </section>
+
+      <section class="panel compact">
+        <h2>Прогресс</h2>
+        <div class="stats-grid">
+          <div><strong id="statSolved">0</strong><span>решено</span></div>
+          <div><strong id="statExact">0%</strong><span>точно</span></div>
+          <div><strong id="statDirection">0%</strong><span>сторона</span></div>
+          <div><strong id="statMeanError">—</strong><span>ср. ошибка</span></div>
+        </div>
+        <div class="progress-track" aria-hidden="true"><span id="progressFill"></span></div>
+        <label class="check-row"><input id="mistakesOnly" type="checkbox"> Только ошибки</label>
+      </section>
+
+      <section class="panel compact legend-panel">
+        <h2>Шкала</h2>
+        <p><b>−4</b> — выигрыш чёрных<br><b>0</b> — равенство<br><b>+4</b> — выигрыш красных</p>
+      </section>
+    </aside>
+
+    <section class="trainer">
+      <div class="task-head">
+        <div>
+          <div id="taskChapter" class="eyebrow"></div>
+          <h2 id="taskTitle">Задача</h2>
+        </div>
+        <div id="taskCounter" class="counter"></div>
+      </div>
+
+      <div class="task-grid">
+        <figure class="board-card">
+          <img id="boardImage" alt="Диаграмма позиции сянци">
+          <figcaption><span id="sideToMove"></span></figcaption>
+        </figure>
+
+        <section class="answer-card">
+          <h3>Оцените позицию</h3>
+          <p class="muted">Выберите итоговую оценку. Красные расположены снизу.</p>
+          <div id="scale" class="scale" role="radiogroup" aria-label="Оценка позиции"></div>
+
+          <div class="confidence-block">
+            <span>Уверенность</span>
+            <div id="confidence" class="confidence" role="radiogroup">
+              <button type="button" data-confidence="low">Почти угадываю</button>
+              <button type="button" data-confidence="medium">Сомневаюсь</button>
+              <button type="button" data-confidence="high">Уверен</button>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button id="submitBtn" class="button primary" type="button" disabled>Проверить</button>
+            <button id="revealBtn" class="button ghost" type="button">Показать ответ</button>
+          </div>
+
+          <div id="feedback" class="feedback" hidden></div>
+        </section>
+      </div>
+
+      <div class="navigation">
+        <button id="prevBtn" class="button ghost" type="button">← Назад</button>
+        <button id="nextBtn" class="button primary" type="button">Следующая →</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Прототип на 30 позициях. Прогресс хранится только в этом браузере.
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
